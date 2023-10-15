@@ -1,9 +1,6 @@
-
-
-from haystack.nodes import EmbeddingRetriever, MarkdownConverter, PreProcessor, AnswerParser, PromptModel, PromptNode, PromptTemplate
 from haystack.document_stores import WeaviateDocumentStore
+from haystack.nodes import EmbeddingRetriever, PreProcessor
 from haystack.preview.components.file_converters.pypdf import PyPDFToDocument
-from haystack import Pipeline
 
 # Define a separator for better visual separation
 separator = "#" * 150
@@ -12,12 +9,15 @@ separator = "#" * 150
 print(f"{separator}\nImport Successful\n{separator}")
 
 # Define the path to the PDF document you want to process
-path_doc = ["/Users/me_teor21/Workspace/Mistral-GPT/data/Internship learning plan - Amazon Lux_COULIBALY Ismael (002).pdf"]
+path_doc = [
+    "/Users/me_teor21/Workspace/Mistral-GPT/data/Internship learning plan - Amazon Lux_COULIBALY Ismael (002).pdf"  # noqa: E501
+]
 
-# Create a Weaviate document store with specified host, port, and embedding dimension
-document_store = WeaviateDocumentStore(host='http://localhost',
-                                       port=8080,
-                                       embedding_dim=384)
+# Create a Weaviate document store with specified host,
+# port, and embedding dimension
+document_store = WeaviateDocumentStore(
+    host="http://localhost", port=8080, embedding_dim=384
+)  # noqa: E501
 
 # Print information about the Weaviate document store
 print(f"{separator}\nDocument Store: {document_store}\n{separator}")
@@ -30,20 +30,17 @@ print(f"{separator}\nConverter: {converter}\n{separator}")
 # Run the converter to extract text from the specified PDF document
 output = converter.run(paths=path_doc)
 docs = output["documents"]
-# Print information about the extracted documents
-# print(f"{separator}\nExtracted Documents: {docs}\n{separator}")
 
-# Process the extracted documents to create a structured format for further analysis
+# Process the extracted documents to create
+# a structured format for further analysis
 final_doc = []
 for doc in docs:
     # print(f"{separator}\n{doc.text}\n{separator}")
-    new_doc = {
-        'content': doc.text,
-        'meta': doc.metadata
-    }
+    new_doc = {"content": doc.text, "meta": doc.metadata}
     final_doc.append(new_doc)
 
-# Create a preprocessor with specific configurations to clean and split the text
+# Create a preprocessor with specific
+# configurations to clean and split the text
 preprocessor = PreProcessor(
     clean_empty_lines=True,
     clean_whitespace=False,
@@ -57,8 +54,6 @@ print(f"{separator}\nPreprocessor: {preprocessor}\n{separator}")
 
 # Process the final documents using the preprocessor
 preprocessed_docs = preprocessor.process(final_doc)
-# Print information about the preprocessed documents
-# print(f"{separator}\nPreprocessed Documents: {preprocessed_docs}\n{separator}")
 
 # Write the preprocessed documents to the Weaviate document store
 document_store.write_documents(preprocessed_docs)
@@ -78,5 +73,3 @@ document_store.update_embeddings(retriever)
 
 # Print a message indicating that the embeddings have been updated
 print(f"{separator}\nEmbeddings Updated\n{separator}")
-
-

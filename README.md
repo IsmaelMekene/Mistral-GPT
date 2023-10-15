@@ -1,1 +1,3 @@
 # Mistral-PDF
+
+In the root directory ...
