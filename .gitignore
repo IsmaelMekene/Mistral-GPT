@@ -1,7 +1,0 @@
-# Ignore data files and directories
-data/
-data/*
-
-# Ignore model weights and checkpoints
-model/
-model/*
