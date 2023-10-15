@@ -1,1 +1,3 @@
-# Mistral-GPT
+# Mistral-PDF
+
+In the root directory ...
