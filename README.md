@@ -10,6 +10,16 @@ Make sure to have the PDF file in the `data/` directory and update your path in 
 
 Download the [Mistral 7B model](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF) and have it in the `model/` directory.
 
+## Local 
+
 Generate your embeddings by run `poetry run python mistral_pdf/embeddings.py`
 Check if the llm model class load well with `poetry run python load_model.py`
 And finally build the app up with `poetry run python app.py` and start prompting!
+
+
+## Docker 
+
+
+Build the image by running `docker build -t mistralgptimage .`
+
+And finally run the app with `docker run --name pycontainer mistralgptimage`
