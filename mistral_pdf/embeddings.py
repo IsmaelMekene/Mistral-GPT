@@ -10,7 +10,7 @@ print(f"{separator}\nImport Successful\n{separator}")
 
 # Define the path to the PDF document you want to process
 path_doc = [
-    "/Users/me_teor21/Workspace/Mistral-GPT/data/Internship learning plan - Amazon Lux_COULIBALY Ismael (002).pdf"  # noqa: E501
+    "/Users/me_teor21/Workspace/Mistral-GPT/data/doc.pdf"  # noqa: E501
 ]
 
 # Create a Weaviate document store with specified host,
